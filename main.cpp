@@ -1,6 +1,9 @@
 #include <iostream>
 #include <future>
 #include <numeric>
+#include <vector>
+#include <numeric>
+#include <functional>
 
 int MIN_ELEMENT_COUNT = 1000;
 
@@ -23,6 +26,7 @@ int parallal_accumulate(iterator begin, iterator end)
 	std::future<int> f1 = std::async(std::launch::deferred | std::launch::async,
 		parallal_accumulate<iterator>, mid, end);
 	auto sum = parallal_accumulate(begin, mid);
+
 	return sum + f1.get();
 }
 
